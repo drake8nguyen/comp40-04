@@ -1,0 +1,41 @@
+HW4 README: Arith
+Drake Nguyen, Trung Truong
+
+Acknowledgements:
+All the TAs in COMP40
+
+Correctly Implemented:
+  - Every requirement in the specs has been correctly implemented.
+  
+Incorrectly Implemented:
+  - There is not a requirement in the specs that has not been correctly
+    implemented.
+
+Architecture of compress40
+  - Compression
+    * Reads in the image
+    * Trims the edges, returns a trimmed version of the image
+    * Maps through the trimmed image, converts R, G, B values in
+      each pixel to Y, Pb, Pr values
+    * Calculates a, b, c, d, index of Pb, and index of Pr when mapping
+      through a 2x2 block
+    * Packs a, b, c, d, index of Pb, index of Pr values in a 2x2 block
+      into a 32-bit word in the big-endian order
+    * Prints out the list of 32-bit words in row-major order
+
+  - Decompression
+    * Reads in the header of the compressed file
+    * In row-major order, populates a 2D array with read-in packed 
+      32-bit words
+    * Unpacks the 32-bit word, and calculates a, b, c, d, index of Pb, index
+      of Pr values.
+    * Calculates Y, Pb, Pr for each pixel in a 2x2 block using
+      the calculated a, b, c, d, index of Pb, and index of Pr values
+    * Converts the Y, Pb, Pr values in each pixel to R, G, B values
+    * Creates an image object with calculated RGB pixels
+    * Prints out the decompressed image
+  
+For this assignment, it took approximately 10 hours to 
+analyze the problem. Once the problem was analyzed, it took
+approximately another 25 hours to solve the problem.
+ 
